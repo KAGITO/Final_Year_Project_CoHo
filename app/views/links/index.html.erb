@@ -1,0 +1,33 @@
+<% @links.each do |link| %>
+ <div class="link row clearfix">
+	<h2 style="margin: 0;">
+		<%= link_to link.title, link %><br/>
+		<small class="author" style="font-size: 1em">created <%= time_ago_in_words(link.created_at) %> by <%= link.user.name %></smail>
+			
+	</h2>
+	<p></p>
+		<div class="btn-group" >
+			<a class="btn btn-default btn-sm" href="<%= link.url %>">Visit Link</a>
+			<%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
+			<span class="glyphicon glyphicon-chevron-up "></span>
+			Like
+			<%= link.get_upvotes.size %>
+			<% end %>
+			<%= link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
+			<span class="glyphicon glyphicon-chevron-down "></span>
+			Dislike
+			<%= link.get_downvotes.size %>
+			<% end %>
+		</div>
+		<p style="height: 0.5em;"></p>
+ </div>
+<% end %>
+
+
+
+	<!-- admin create news-->
+	<br>
+	<% if current_user.admin? && !current_user?(@user) %>
+	<h2><%= link_to 'Create News', new_link_path,  class: "btn btn-primary" %></h2>
+	<% end %>
+	<!-- admin create news-->
