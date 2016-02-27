@@ -1,0 +1,23 @@
+	<span class="title">
+		<%= @question.title %>	
+	</span>
+	<br>
+
+	<%= link_to gravatar_for(@question.user, size: 20), @question.user %>
+	<span class="user"><%= link_to @question.user.name, @question.user %></span>
+	<br>
+
+	<span class="timestamp">
+		Posted <%= time_ago_in_words(@question.created_at) %> ago.
+	</span>
+	<br>
+	
+	<span class="content">
+		<%= @question.content %>
+	</span>
+	<br>
+
+	<% if current_user?(@question.user) %>
+	<%= link_to "Delete", @question, method: :delete,
+	data: { confirm: "You sure?" }, class: "btn btn-default" %>
+	<% end %>

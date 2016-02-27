@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  resources :questions
+ resources :microposts,          only: [:create, :destroy]
+
+
+
   resources :comments
+  
   resources :links do
     member do
       put "like", to: "links#upvote"

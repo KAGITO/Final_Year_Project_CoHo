@@ -11,6 +11,8 @@
       has_secure_password 
 
       has_many :links
+      has_many :microposts, dependent: :destroy
+      has_many :questions
       #has_many :comments
 
       # Returns the hash digest of a string.
@@ -40,4 +42,9 @@
       def forget
         update_attribute(:remember_digest, nil)
       end
+
+      def feed
+        Micropost.where("user_id = ?", id)
+      end
+
     end   
