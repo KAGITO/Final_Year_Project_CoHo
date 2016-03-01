@@ -1,8 +1,39 @@
+<div>
 	<span class="title">
 		<%= @question.title %>	
 	</span>
 	<br>
+<!-- tag -->
+<div>
+<% if @question.tags!=nil %>
+  <% @question.tags.each do |tag| %>
+  	<%= tag.name %>
+  		<% if current_user?(@question.user) %>
+  		<%= link_to "x", tag, 
+ 	 	method: :delete,data: { confirm: "You sure?" } %>
+  	<% end %>
+  <% end %>
+<% end %>
 
+<% if current_user?(@question.user) %>
+  <a data-toggle="collapse" href="#form_<%= @question.id %>" aria-expanded="false" aria-controls="form">
+    +
+  </a>
+<% end %>
+
+
+<div class="collapse" id="form_<%= @question.id %>" >
+  <div class="well">
+    <%= form_for(Tag.new) do|f| %>
+      <input type="text" name="new_tag"/>
+	  <input type="hidden" name="question_id" value=<%= @question.id %>>
+	  <%= f.submit :Add, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+</div>
+<!-- tag -->
 	<%= link_to gravatar_for(@question.user, size: 20), @question.user %>
 	<span class="user"><%= link_to @question.user.name, @question.user %></span>
 	<br>
@@ -14,10 +45,37 @@
 	
 	<span class="content">
 		<%= @question.content %>
+		 <%= image_tag @question.picture.url if @question.picture? %>
 	</span>
 	<br>
 
+
+
+
 	<% if current_user?(@question.user) %>
 	<%= link_to "Delete", @question, method: :delete,
-	data: { confirm: "You sure?" }, class: "btn btn-default" %>
+	data: { confirm: "You sure?" }, class: "btn btn-default pull-right" %>
 	<% end %>
+
+</div>	
+
+
+
+
+<h3 class="answers_title">
+	<%= @question.answers.count %> Answers 
+</h3>
+
+<div id="comments">
+	<%= render :partial => @question.answers %>
+</div>
+<%= simple_form_for [@question, Answer.new] do |f| %>
+	<div class="field">
+		<%= f.text_area :body, class: "form-control" %>
+	</div>
+	<br>
+	<%= f.submit "Add Answer", class: "btn btn-primary" %>
+	  <span class="picture">
+    <%= f.file_field :picture %>
+  </span>
+<% end %>
