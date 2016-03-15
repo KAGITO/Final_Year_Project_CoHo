@@ -5,7 +5,7 @@ class Question < ActiveRecord::Base
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
 	validates :user_id, presence: true
-	validates :title, presence: true, length: { maximum: 10 }
+	validates :title, presence: true, length: { maximum: 50 }
 	validates :content, presence: true, length: { maximum: 1000 }
   validate  :picture_size
 

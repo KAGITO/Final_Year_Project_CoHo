@@ -7,7 +7,10 @@
 <div>
 <% if @question.tags!=nil %>
   <% @question.tags.each do |tag| %>
+    <span style="border:1px solid; border-radius: 2px;">
+  	 &nbsp;
   	<%= tag.name %>
+    </span>
   		<% if current_user?(@question.user) %>
   		<%= link_to "x", tag, 
  	 	method: :delete,data: { confirm: "You sure?" } %>

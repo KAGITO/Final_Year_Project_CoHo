@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :tags
-  resources :answers
+
   
   resources :questions do
     resources :answers
@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
 
   resources :microposts,          only: [:create, :destroy]
+  resources :relationships,       only: [:create, :destroy]
   resources :comments
   
   resources :links do
@@ -24,7 +25,12 @@ Rails.application.routes.draw do
 
  
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  
   root 'static_pages#home'
   get 'help'    => 'static_pages#help'
   get 'about'   => 'static_pages#about'
