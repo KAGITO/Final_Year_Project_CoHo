@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315123206) do
+ActiveRecord::Schema.define(version: 20160316121726) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 20160315123206) do
 
   add_index "comments", ["link_id"], name: "index_comments_on_link_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "documents", force: :cascade do |t|
+    t.string   "filename"
+    t.string   "content_type"
+    t.binary   "file_contents"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "documents", ["user_id"], name: "index_documents_on_user_id"
 
   create_table "links", force: :cascade do |t|
     t.string   "title"

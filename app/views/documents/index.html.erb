@@ -1,0 +1,39 @@
+<h1>Files</h1>
+
+<h2>Listing files</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.filename %></td>
+        <td><%= button_to 'Download', document, method: :get %></td>
+        <td>
+<% if current_user?(document.user) %>
+          <%= button_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Document', new_document_path %>
+
+
+
+
+
+
+
+
