@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
+  get 'auth/:provider/callback', to: "sessions#createthird"
+
  
 
   resources :users do
@@ -35,6 +37,10 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'help'    => 'static_pages#help'
   get 'about'   => 'static_pages#about'
+   post 'signup' => 'users#create'
+
+  get 'profile'   => 'static_pages#profile'
+
   get 'signup'  => 'users#new'
   get 'login'   => 'sessions#new'
   post 'login'   => 'sessions#create'

@@ -1,0 +1,11 @@
+<h1> Profile </h1>
+    <div class="row">
+      <aside class="col-md-4">
+        <section class="user_info">
+          <h1>
+            <%= image_tag(@auth['info']['image'], width: '100', heigth: '100') %>
+            Name: <%= current_thirduser.name %><br>
+          </h1>
+        </section>
+      </aside>
+    </div>

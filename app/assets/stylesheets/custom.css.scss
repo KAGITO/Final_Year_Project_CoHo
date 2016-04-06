@@ -15,6 +15,7 @@ box-sizing:         border-box;
 
 body {
 padding-top: 60px;
+background-color: #f5f7fa; 
 }
 
 section {
@@ -67,9 +68,11 @@ float: left;
 margin-right: 10px;
 font-size: 1.7em;
 color: #fff;
-text-transform: uppercase;
 letter-spacing: -1px;
 padding-top: 9px;
+color: #656d78;
+font-style: oblique;
+font-variant: small-caps;
 font-weight: bold;
 }
 
@@ -78,6 +81,14 @@ color: #fff;
 text-decoration: none;
 }
 
+.navbar-inverse{
+background-color: #e6e9ed;
+}
+
+.navbar-nav{
+font-style: oblique;
+font-variant: small-caps;
+}
 /* footer */
 
 footer {
@@ -85,6 +96,7 @@ margin-top: 45px;
 padding-top: 5px;
 border-top: 1px solid #eaeaea;
 color: #777;
+font-style: oblique;
 }
 
 footer a {

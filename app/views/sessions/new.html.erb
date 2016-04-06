@@ -14,6 +14,12 @@
           <%= f.submit "Log in", class: "btn btn-primary" %>
         <% end %>
 
+            <div>
+          <h3>Sign in with:
+          <%= link_to "auth/facebook" do %><%= image_tag('facebook.png', width: '40', height: '40', class: 'img-circle')%><% end %>
+        </h3>
+        </div>
+
         <p>New user? <%= link_to "Sign up now!", signup_path %></p>
       </div>
     </div>

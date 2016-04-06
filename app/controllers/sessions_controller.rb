@@ -17,5 +17,16 @@ class SessionsController < ApplicationController
       def destroy
         log_out if logged_in?
         redirect_to root_url
+          session[:thirduser_id]  = nil
+        session[:omniauth] = nil
       end 
+
+      def createthird
+    auth = request.env["omniauth.auth"]
+    session[:omniauth] = auth.except('extra')
+    thirduser = Thirduser.sign_in_from_omniauth(auth)
+    session[:thirduser_id] = thirduser.id
+
+    redirect_to root_url, notice: "Signed In Successfully!"
+   end 
 end

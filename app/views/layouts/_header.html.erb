@@ -5,6 +5,19 @@
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home", root_path %></li>
             <!-- <li><%= link_to "Help", help_path %></li> -->
+            <% if current_thirduser %>
+                  <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Hi, <%= current_thirduser.name %> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profile", profile_path %></li>
+                   <li class="divider"></li>
+                   <li>
+                    <%= link_to "Log out", logout_path, method: "delete" %>
+                  </li>
+             <% else %>
+
             <% if logged_in? %>
              <li><%= link_to "Files", documents_path %></li>
              <li><%= link_to "Q&A", questions_path %></li>
@@ -25,6 +38,8 @@
               </li>
             <% else %>
               <li><%= link_to "Log in", login_path %></li>
+            <% end %>
+
             <% end %>
           </ul>
         </nav>

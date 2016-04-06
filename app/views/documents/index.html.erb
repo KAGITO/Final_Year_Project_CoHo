@@ -15,6 +15,11 @@
     <% @documents.each do |document| %>
       <tr>
         <td><%= document.filename %></td>
+        <td>
+
+  <%= link_to gravatar_for(document.user, size: 20), document.user %>
+  <span class="user"><%= link_to document.user.name, document.user %></span>
+        </td>
         <td><%= button_to 'Download', document, method: :get %></td>
         <td>
 <% if current_user?(document.user) %>

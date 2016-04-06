@@ -17,6 +17,9 @@
     gem 'mini_magick',  '3.8.0'
     gem 'fog',          '1.36.0'
     gem 'sdoc',         '0.4.0', group: :doc
+    gem 'omniauth-facebook'
+    gem 'omniauth-twitter'
+    gem 'omniauth-github'
 
     group :development, :test do
       gem 'sqlite3',     '1.3.9'
